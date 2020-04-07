@@ -3,4 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/app';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { restaurants } from './fixtures';
+
+ReactDOM.render(
+  <App restaurants={restaurants} />,
+  document.getElementById('root')
+);

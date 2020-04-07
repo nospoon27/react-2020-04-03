@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'antd';
-import { useAmount } from '../hooks/use-amount';
+import counter from '../hocs/counter';
 
-export default function Dish(props) {
-  const { count, decrement, increment } = useAmount();
+function Dish(props) {
+  const { count, decrement, increment } = props;
 
   return (
     <div>
@@ -19,3 +19,5 @@ export default function Dish(props) {
     </div>
   );
 }
+
+export default counter(Dish);

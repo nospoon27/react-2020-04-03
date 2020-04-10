@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Typography, Button, Row, Col } from 'antd';
 import styles from './dish.module.css';
@@ -6,7 +6,12 @@ import counter from '../../hocs/counter';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
 function Dish(props) {
-  const { dish, count, decrement, increment } = props;
+  const { dish, count, decrement, increment, fetchData } = props;
+
+  useEffect(() => {
+    fetchData && fetchData(dish.id);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Card className={styles.productDetailedOrderCard}>
@@ -22,7 +27,9 @@ function Dish(props) {
         </Col>
         <Col xs={8} md={6} lg={4} align="right">
           <div className={styles.counter}>
-            <div className={styles.count}>{count}</div>
+            <div className={styles.count} data-id="dish-amount">
+              {count}
+            </div>
             <Button.Group>
               <Button
                 className={styles.button}
@@ -33,6 +40,7 @@ function Dish(props) {
                 className={styles.button}
                 icon={<PlusOutlined />}
                 onClick={increment}
+                data-id="dish-increment"
               />
             </Button.Group>
           </div>

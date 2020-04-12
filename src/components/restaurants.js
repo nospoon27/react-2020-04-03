@@ -20,7 +20,6 @@ const Restaurants = props => {
         onRestaurantChange={id => setActiveRestaurant(id)}
       />
       <Restaurant restaurant={activeRestaurant} />
-      {/* <Menu restaurant={activeRestaurant} /> */}
     </div>
   );
 };

@@ -1,17 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import RestaurantsNavigation from './restaurants-navigation';
-import Menu from './menu';
+import RestaurantsNavigation from './RestaurantsNavigation';
+import Menu from './Menu';
+import Restaurant from './Restaurant';
 
-export default function Restaurants(props) {
+const Restaurants = props => {
   const [activeRestaurantId, setActiveRestaurant] = useState(
     props.restaurants[0].id
   );
 
   const activeRestaurant = useMemo(
-    () =>
-      props.restaurants.find(
-        restaurant => restaurant.id === activeRestaurantId
-      ),
+    () => findRestaurant(props.restaurants, activeRestaurantId),
     [props.restaurants, activeRestaurantId]
   );
 
@@ -21,7 +19,14 @@ export default function Restaurants(props) {
         restaurants={props.restaurants}
         onRestaurantChange={id => setActiveRestaurant(id)}
       />
-      <Menu restaurant={activeRestaurant} />
+      <Restaurant restaurant={activeRestaurant} />
+      {/* <Menu restaurant={activeRestaurant} /> */}
     </div>
   );
-}
+};
+
+const findRestaurant = (restaurants, activeId) => {
+  return restaurants.find(r => r.id === activeId);
+};
+
+export default Restaurants;

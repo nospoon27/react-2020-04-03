@@ -1,5 +1,5 @@
 import React from 'react';
-import Dish from './dish';
+import Dish from './Dish';
 
 export default function Menu(props) {
   return (
